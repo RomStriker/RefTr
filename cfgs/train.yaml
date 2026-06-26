@@ -1,0 +1,162 @@
+# Model parameters
+# Decoder's Feedforward hidden dim
+dim_feedforward: 2048
+#Number of decoder heads
+nheads: 16
+# length of each confluent trajectory
+seq_len: 10
+# size of 3D patch (cubic)
+sub_vol_size: 64
+# cross attend to a smaller center crop of the feature output from the encoder
+focus_vol_size: 16
+# dimension of the decoder tokens
+hidden_dim: 512
+# number of previous positions for the past trajectory token
+num_prev_pos: 5
+num_past_tr_tokens: 1
+# multiples of seq_lens for training
+traj_train_len: 6
+# how many past lvls to retain for variable trajectory length > 1
+retain_past_lvls_num: 5
+# number of deformation steps
+num_steps: 8
+# number of inital branches
+num_init_branches: 20
+# setting number of layer for the producer and directer decoder
+dec_prod_layers: 1
+dec_dir_layers: 1
+# type and size of heads
+div_mlp_depths: [1024, 512, 256, 128]
+end_mlp_depths: [512, 256, 128, 64]
+mlp_activation: 'swish' # 'relu', 'swish'
+# The probability with which to train the divergence head using the non-bifurcating and bifurcating branches
+train_div_non_bif_prob: 0.4
+train_div_bif_prob: 1.0
+# Swin UNETR params
+unetr_pretrained_weights: ''
+unetr_dim: 24
+depths: [2, 2, 2, 2]
+num_heads: [3, 6, 12, 24]
+patch_size: 2
+window_size: 7
+# Misc
+dropout: 0.1
+pre_norm: false
+aux_loss: true
+
+
+# Matcher
+# position cost weight
+set_cost_direction: 3.0
+# radius cost weight
+set_cost_radius: 1.0
+# Loss
+# position loss weight
+dir_loss_coef: 4.2
+# radius loss weight
+rad_loss_coef: 1.15
+# divergence loss weight
+div_loss_coef: 0.3
+#  end loss weight
+end_loss_coef: 0.94
+
+
+# Dataset & Dataloader
+dataset: synthetic  # synthetic, atm22, parse2022
+data_dir: data/synthetic
+batch_size: 4
+batch_size_val: 1
+mask: false
+determinism: true
+root_prob: 0.2
+bifur_prob: 0.5
+end_prob: 0.3
+num_workers: 1
+# window input intensity values (clamp)
+window_input: false
+window_max: -500
+window_min: -1000
+# SmartCacheDataset Params
+cache_num: 16
+replace_rate: 0.125
+num_init_workers: 4
+num_replace_workers: 2
+
+
+# Miscellaneous
+# path where to save, empty for no saving
+output_dir: ''
+# device to use for training / testing
+device: cuda
+seed: 37
+amp: true
+
+
+# distributed training parameters
+distributed: true # is set to true by the init function
+debug: false
+# number of distributed processes
+world_size: 1
+# url used to set up distributed training
+dist_url: env://
+
+
+# learning rate and epochs
+# number of epoch (1 epoch = 32 samples)
+epochs: 60000
+lr: 0.0001
+min_lr: 0.00001
+lr_sch: 'cos_ann'
+weight_decay: 0.0001
+
+
+# Validation and Evaluation
+eval_only: false
+volume_eval: true
+sub_volume_eval: false
+val_interval_sv: 100
+test_sample: []
+save_checkpoint: 10
+val_interval: 100
+# epoch interval for model saving. if 0 only save last and best models
+save_model_interval: 2000
+# Limit prediction
+eval_limit_levels: true
+max_inference_levels: 100
+eval_limit_nodes_per_level: true
+max_nodes_per_level: 200
+max_nodes_test: 150000
+# param for setting number of sub-vols of a sample to process at the
+# same time during inference.
+batch_size_per_sample: 16
+# threshold for f1 score
+multiple_fraction_thresholds: false
+f1_thresholds: [0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75]
+# compute test results
+test_eval: false
+
+
+# resume training
+resume: ''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

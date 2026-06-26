@@ -1,0 +1,14 @@
+resume: ''
+eval_only: true
+batch_size: 1
+batch_size_per_sample: 2
+dataset: atm22  # ircadb, synthetic, atm22
+data_dir: data/atm22
+max_inference_levels: 500
+max_nodes_per_level: 1000
+max_nodes_test: 150000
+volume_eval: true
+sub_volume_eval: true
+# ' 10' to get all trees of sample 10, 0 to get first batch of all trees of all samples (single element)
+# ' 10-0' to get first tree of sample 10 (multiple elements)
+test_sample: [] #'270-0', '628-0'
