@@ -2,7 +2,7 @@
 
 This repository provides the official implementation of the RefTr: Recurrent Refinement of Confluent Trajectories for 3D Vascular Tree Centerline Graphs paper by [Roman Naeem](https://research.chalmers.se/en/person/nroman), [David Hagerman](https://research.chalmers.se/en/person/olzond), [Jennifer Alvén](https://research.chalmers.se/person/alven) and [Fredrik Kahl](https://research.chalmers.se/person/kahlf). 
 
-### Disclaimer:
+### Note
 We are currently in the process of cleaning up the code and updating the hyperparameters.
 
 ## Installation
